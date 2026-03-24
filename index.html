@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mariohamann/activity-graph/dist/activity-graph.min.js"></script>
+    <title>Portfolio</title>
+</head>
+<body class="">
+
+    <div class="container">
+        <!-- Navbar -->
+        <nav class="navbar" aria-label="Navigation principale">
+            <div class="box them" onclick="theme()" title="Changer le thème" role="button" tabindex="0" aria-label="Basculer le thème clair/sombre">
+                <div class="item">
+                    <ion-icon id="lightBtn" name="sunny-outline" aria-hidden="true"></ion-icon>
+                    <ion-icon id="darkBtn" name="moon-outline" style="display: none;" aria-hidden="true"></ion-icon>
+                </div>
+            </div>
+            <div class="box nav">
+                <div class="item">
+                    <a href="#about" aria-label="À propos">
+                        <ion-icon name="person-circle-outline"></ion-icon>
+                        <p>about</p>
+                    </a>
+                    <div class="divider rtl"></div>
+                </div>
+                <div class="item">
+                    <a href="#resume" aria-label="Résumé et expérience">
+                        <ion-icon name="folder-outline"></ion-icon>
+                        <p>resume</p>
+                    </a>
+                    <div class="divider rtl"></div>
+                </div>
+                <div class="item">
+                    <a href="#projects" aria-label="Projets">
+                        <ion-icon name="layers-outline"></ion-icon>
+                        <p>projects</p>
+                    </a>
+                    <div class="divider ltr"></div>
+                </div>
+                <div class="item">
+                    <a href="#blogs" aria-label="Articles de blog">
+                        <ion-icon name="reader-outline"></ion-icon>
+                        <p>blogs</p>
+                    </a>
+                    <div class="divider ltr"></div>
+                </div>
+                <div class="item">
+                    <a href="#contact" aria-label="Contact">
+                        <ion-icon name="paper-plane-outline"></ion-icon>
+                        <p>contact</p>
+                    </a>
+                    <div class="divider ltr"></div>
+                </div>
+            </div>
+        </nav>
+        <!--profile-->
+
+        <div class="box profile">
+            <img class="header" src="logo.jpeg" alt="logo">
+            <img class="img" src="photo.jpeg" alt="profile picture">
+            <h2>Teko shalom</h2>
+            <p id="typed" class="colored">Informaticien</p>
+
+            <ul>
+                <li><a href="#"><ion-icon name="logo-github"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+            </ul>
+
+            <div class="footer">
+                <div class="divider rtl"></div>
+                <table>
+                    <tr>
+                        <td><a href="#">Parcours  <ion-icon name="folder-outline"></ion-icon></a></td>
+                        <td><a href="#">contactez moi  <ion-icon name="call-outline"></ion-icon></a></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+        <!-- content -->
+        <div class="box content">
+            <div class="wrapper">
+                <section id="about">
+                    <h2> Salut <span class="colored">Comment vous allez?!</span><ion-icon name="hand-right-outline"></ion-icon></h2>
+                    <div class="divider ltr"></div>
+                    <p>
+                        Bienvenue sur mon portfolio!
+                        je suis un informaticien passionné par la technologie et le développement de solutions innovantes. 
+                        Sur ce site, vous trouverez des informations sur mon parcours professionnel,
+                        <span class="colored">mes compétences</span>, mes projets réalisés, ainsi que mes articles de blog sur les dernières tendances technologiques. 
+                        N'hésitez pas à explorer mon portfolio pour en savoir plus sur moi et mes réalisations.
+                    </p>
+
+                    <!--achievements-->
+                    <section class="achievements">
+                        <div>
+                            <h3><ion-icon name="layers-outline"></ion-icon>0....</h3>
+                            <p>Aucun projet réalisé</p>
+                        </div>
+                        <div>
+                            <h3><ion-icon name="briefcase-outline"></ion-icon>1+</h3>
+                            <p>Plus d'un an d'apprentissage</p>
+                        </div>
+                        <div>
+                            <h3><ion-icon name="trophy-outline"></ion-icon>0....</h3>
+                            <p>aucun projet accompli</p>
+                        </div>
+                    </section>
+                </section>
+
+                <!--skills-->
+                <h2>Mes <span class="colored">Compétences</span></h2>
+                <div class="divider ltr"></div>
+
+                <section class="skills">
+                    <div><ion-icon name="logo-html5"></ion-icon><p>HTML</p></div>
+                    <div><ion-icon name="logo-css3"></ion-icon><p>css</p></div>
+                    <div><ion-icon name="logo-react"></ion-icon><p>React</p></div>
+                    <div><ion-icon name="logo-javascript"></ion-icon><p>JavaScript</p></div>
+                    <div><ion-icon name="logo-python"></ion-icon><p>Python</p></div>
+                    <div><ion-icon name="logo-java"></ion-icon><p>java</p></div>
+                    <div><ion-icon name="logo-c"></ion-icon><p>C</p></div>
+                    <div>
+                        <div class="circle progress-bar" style="--percent:65%">
+                            <h4>60 <small>%</small></h4>
+                        </div>
+                        <p>PHP</p>
+                        <progress value="50" max="60"></progress>
+                    </div>
+                    <div>
+                        <div class="circle progress-barv" style="--percent:85%">
+                            <h4>80 <small>%</small></h4>
+                            <p>MySQL</p>
+                        <progress value="70" max="80"></progress>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="progress-bar">
+                            <ion-icon name="logo-nodejs"></ion-icon>
+                            <p>Node Js <span>50%</span></p>
+                            <progress value="40" max="50"></progress>
+                        </div>
+                    </div>
+                    <div></div>
+                </section>
+
+                <!--Experience-->
+                <h1 id="resume">Mon <span class="colored">Expérience</span></h1>
+                <div class="divider ltr"></div>
+
+                <section class="experiences">
+                    <div class="parcours">
+                        <h2>Etudiant en informatique</h2>
+                        <h4>IAI-TOGO</h4>
+                        <p>j' étudie l'informatique à l'IAI-TOGO. j'ai pu participer à plusieurs projets de développement web, mobile et projets de réseaux.
+                            j'ai également acquis des compétences en programmation, en gestion de bases de données et en administration système. 
+                            Mon parcours académique m'a permis de développer une solide compréhension des concepts informatiques et de me préparer à relever les défis du monde professionnel.
+                        </p>
+
+                        <h2>Graphiste</h2>
+                        <h4>B-Attitude</h4>
+                        <p>
+                            En tant que graphiste chez B-Attitude, j'ai eu l'opportunité de travailler sur divers projets de design graphique, 
+                            notamment la création de logos, de supports marketing et de visuels pour les réseaux sociaux. 
+                            J'ai utilisé des outils tels que Adobe Photoshop et Illustrator pour donner vie à mes idées créatives et répondre aux besoins de mes clients. 
+                            Cette expérience m'a permis de développer mes compétences en design et de renforcer ma capacité à communiquer visuellement.
+                        </p> 
+                    </div>
+                </section>
+
+                <h1 id="projects"> Mes <span class="colored">Participations</span></h1>
+                <div class="divider ltr"></div>
+
+                <section class="participations">
+                    <div class="wrapper">
+                        <activity-graph
+                            range-start="2026-01-01"
+                            range-end="2026-12-31"
+                            activity-levels="0,1,2,3,5"
+                            activity-data="
+                            2021-01-01,
+                            2021-01-02,
+                            2021-01-03"                            
+                        ></activity-graph>
+                    </div>
+                </section>
+            
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/typed.js@3.0.0/dist/typed.umd.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
