@@ -508,3 +508,209 @@ body.light .participations activity-graph {
 .rtl {
     background: radial-gradient(ellipse at right, var(--accent-02) -70%, transparent 80%);
 }
+
+/* Spline Viewer 3D */
+.robot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 280px;
+    height: 280px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 212, 255, 0.2);
+    border: 2px solid var(--accent-04);
+    z-index: 10;
+}
+
+/* ===== CONTACT MODAL STYLES ===== */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background-color: var(--accent-01);
+    border-radius: 25px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+body.light .modal-content {
+    background-color: var(--accent-01);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--accent-04);
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: var(--accent-03);
+    font-size: 24px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: var(--accent-04);
+    transition: color 0.3s ease, transform 0.2s ease;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    color: var(--accent-05);
+    transform: scale(1.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--accent-03);
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px 15px;
+    border: 2px solid var(--accent-02);
+    border-radius: 10px;
+    background-color: var(--primary-colors);
+    color: var(--accent-03);
+    font-size: 14px;
+    font-family: 'Segoe UI', Calibri, sans-serif;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-04);
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, var(--accent-04), var(--accent-05));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+#messageDisplay {
+    margin-top: 15px;
+    display: none;
+}
+
+.message {
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+    animation: slideIn 0.3s ease;
+}
+
+.message.success {
+    background-color: #28a745;
+    color: white;
+    border: 2px solid #20c997;
+}
+
+.message.error {
+    background-color: #dc3545;
+    color: white;
+    border: 2px solid #c82333;
+}
+
+/* Modal responsive */
+@media (width <= 768px) {
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 20px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 16px;
+    }
+}
