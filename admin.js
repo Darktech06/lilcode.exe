@@ -8,7 +8,7 @@ async function loadMessages() {
     const container = document.getElementById('messagesContainer');
     
     try {
-        const response = await fetch('http://localhost:5000/api/messages');
+        const response = await fetch('https://portfolio-backend-o6p6.onrender.com/api/messages');
         const messages = await response.json();
 
         if (!response.ok) {
@@ -82,7 +82,7 @@ async function loadMessages() {
 
 async function markAsRead(messageId) {
     try {
-        const response = await fetch(`http://localhost:5000/api/messages/${messageId}`, {
+        const response = await fetch(`https://portfolio-backend-o6p6.onrender.com/api/messages/${messageId}`, {
             method: 'PUT'
         });
 
@@ -97,7 +97,7 @@ async function markAsRead(messageId) {
 async function deleteMessage(messageId) {
     if (confirm('Êtes-vous sûr de vouloir supprimer ce message?')) {
         try {
-            const response = await fetch(`http://localhost:5000/api/messages/${messageId}`, {
+            const response = await fetch(`https://portfolio-backend-o6p6.onrender.com/api/messages/${messageId}`, {
                 method: 'DELETE'
             });
 
