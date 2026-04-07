@@ -7,12 +7,38 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import os
 from dotenv import load_dotenv
+import logging
+
+# Configuration logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
+# Check DATABASE_URL
+print("=" * 50)
+print("CONFIGURATION STARTUP")
+print("=" * 50)
+db_url = os.getenv('DATABASE_URL', '')
+if db_url:
+    masked_url = db_url[:30] + "***" + db_url[-10:]
+    print(f"✅ DATABASE_URL configurée: {masked_url}")
+else:
+    print("❌ DATABASE_URL NON TROUVÉE!")
+print("=" * 50)
+
 # Configuration Flask
 app = Flask(__name__)
-CORS(app)
+
+# Configuration CORS pour accepter les requêtes de Vercel
+CORS(app, resources={
+    r"/api/*": {
+        "origins": ["*"],
+        "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"],
+        "supports_credentials": True
+    }
+})
 
 # Configuration PostgreSQL
 DATABASE_URL = os.getenv('DATABASE_URL', '')
