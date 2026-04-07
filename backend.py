@@ -16,8 +16,19 @@ CORS(app)
 
 # Configuration PostgreSQL
 DATABASE_URL = os.getenv('DATABASE_URL', '')
+
+# Fix Neon SSL connection
+if DATABASE_URL and DATABASE_URL.startswith('postgresql://'):
+    DATABASE_URL = DATABASE_URL.replace('postgresql://', 'postgresql+psycopg2://')
+    if '?sslmode' not in DATABASE_URL:
+        DATABASE_URL += '?sslmode=require'
+
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+    'pool_pre_ping': True,
+    'pool_recycle': 300,
+}
 
 # Initialiser SQLAlchemy
 db = SQLAlchemy(app)
@@ -142,8 +153,10 @@ def send_contact():
     
     except Exception as e:
         db.session.rollback()
-        print(f"❌ Erreur: {str(e)}")
-        return jsonify({'error': str(e)}), 500
+        error_msg = f"❌ Erreur: {str(e)}"
+        print(error_msg)
+        print(f"Type d'erreur: {type(e).__name__}")
+        return jsonify({'error': 'Erreur serveur. Veuillez réessayer.', 'details': str(e)}), 500
 
 @app.route('/api/messages', methods=['GET'])
 def get_messages():
