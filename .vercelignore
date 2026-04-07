@@ -1,0 +1,10 @@
+backend.py
+Dockerfile
+.dockerignore
+fly.toml
+requirements.txt
+env/
+__pycache__/
+*.pyc
+.env
+package.json
