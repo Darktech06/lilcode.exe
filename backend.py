@@ -99,39 +99,20 @@ RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL', 'your_email@gmail.com')
 
 # ===== FONCTION POUR ENVOYER EMAIL =====
 def send_email(message_data):
-    """Envoyer un email de notification"""
+    """Envoyer un email de notification (désactivé sur Render)"""
     try:
-        msg = MIMEMultipart()
-        msg['From'] = SENDER_EMAIL
-        msg['To'] = RECIPIENT_EMAIL
-        msg['Subject'] = f"📧 Nouveau message: {message_data['subject']}"
-        
-        body = f"""
-Nouveau message de contact reçu:
-
-👤 Nom: {message_data['name']}
-📧 Email: {message_data['email']}
-☎️ Téléphone: {message_data['phone']}
-📌 Sujet: {message_data['subject']}
-
-💬 Message:
-{message_data['message']}
-
----
-⏰ Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-        """
-        
-        msg.attach(MIMEText(body, 'plain'))
-        
-        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
-            server.starttls()
-            server.login(SENDER_EMAIL, SENDER_PASSWORD)
-            server.send_message(msg)
-        
-        print("✅ Email envoyé!")
+        # Sur Render free tier, SMTP est bloqué
+        # Pour produciton, utiliser SendGrid ou Mailgun
+        print(f"📧 Email Log (non envoyé):")
+        print(f"  À: {RECIPIENT_EMAIL}")
+        print(f"  De: {message_data['email']}")
+        print(f"  Sujet: {message_data['subject']}")
+        print(f"  ✅ Message enregistré dans la BD PostgreSQL")
+        return True
         
     except Exception as e:
         print(f"❌ Erreur email: {str(e)}")
+        return False
 
 # ===== ROUTES API =====
 
