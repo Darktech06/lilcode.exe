@@ -2,11 +2,10 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 import os
 from dotenv import load_dotenv
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 import logging
 
 # Configuration logging
@@ -90,28 +89,54 @@ with app.app_context():
     db.create_all()
     print("✅ Base de données PostgreSQL initialisée avec succès!")
 
-# ===== CONFIGURATION EMAIL =====
-SMTP_SERVER = os.getenv('SMTP_SERVER', 'smtp.gmail.com')
-SMTP_PORT = int(os.getenv('SMTP_PORT', 587))
+# ===== CONFIGURATION EMAIL - SENDGRID =====
+SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY', '')
 SENDER_EMAIL = os.getenv('SENDER_EMAIL', 'your_email@gmail.com')
-SENDER_PASSWORD = os.getenv('SENDER_PASSWORD', 'your_password')
 RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL', 'your_email@gmail.com')
+
+if not SENDGRID_API_KEY:
+    print("⚠️  SENDGRID_API_KEY non configurée!")
+else:
+    print("✅ SendGrid configuré")
 
 # ===== FONCTION POUR ENVOYER EMAIL =====
 def send_email(message_data):
-    """Envoyer un email de notification (désactivé sur Render)"""
+    """Envoyer un email via SendGrid"""
     try:
-        # Sur Render free tier, SMTP est bloqué
-        # Pour produciton, utiliser SendGrid ou Mailgun
-        print(f"📧 Email Log (non envoyé):")
-        print(f"  À: {RECIPIENT_EMAIL}")
-        print(f"  De: {message_data['email']}")
-        print(f"  Sujet: {message_data['subject']}")
-        print(f"  ✅ Message enregistré dans la BD PostgreSQL")
+        if not SENDGRID_API_KEY:
+            print("❌ SendGrid API key manquante!")
+            return False
+
+        # Créer le message
+        message = Mail(
+            from_email=SENDER_EMAIL,
+            to_emails=RECIPIENT_EMAIL,
+            subject=f"📧 Nouveau message: {message_data['subject']}",
+            plain_text_content=f"""
+Nouveau message de contact reçu:
+
+👤 Nom: {message_data['name']}
+📧 Email: {message_data['email']}
+☎️ Téléphone: {message_data['phone']}
+📌 Sujet: {message_data['subject']}
+
+💬 Message:
+{message_data['message']}
+
+---
+⏰ Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+            """
+        )
+        
+        # Envoyer via SendGrid
+        sg = SendGridAPIClient(SENDGRID_API_KEY)
+        response = sg.send(message)
+        
+        print(f"✅ Email envoyé via SendGrid! (Status: {response.status_code})")
         return True
         
     except Exception as e:
-        print(f"❌ Erreur email: {str(e)}")
+        print(f"❌ Erreur SendGrid: {str(e)}")
         return False
 
 # ===== ROUTES API =====
