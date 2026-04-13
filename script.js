@@ -1,6 +1,6 @@
 //animation 
 var typed = new Typed("#typed", {
-    strings: ["Informaticien", "Développeur Web", "Graphiste", "Etudiant en informatique"],
+    strings: ["Informaticien", "Développeur Web", "Graphiste", "Etudiant en informatique", "Passionné de technologie", "créateur de contenu youtube", "Freelance", "Design 2 et 3D", "FullStack Developer", "Web Designer", "Web Developer", "Développeur Front-End", "Développeur Back-End", "Développeur Mobile", "Débutant en cybersécurité", "Ingénieur en intelligence artificielle"],
     typeSpeed: 50,
     backSpeed: 20,
     backDelay: 3000,
