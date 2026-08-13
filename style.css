@@ -237,8 +237,49 @@ section {
 }
 
 .skills ion-icon {
-    color: var(--accent-01);
-    font-size: 32px;
+    font-size: 48px;
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Couleurs distinctes pour chaque langage */
+.skills > div:nth-child(1) ion-icon { /* HTML */
+    color: #ff6b35;
+    text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+}
+
+.skills > div:nth-child(2) ion-icon { /* CSS */
+    color: #264de4;
+    text-shadow: 0 0 10px rgba(38, 77, 228, 0.5);
+}
+
+.skills > div:nth-child(3) ion-icon { /* React */
+    color: #61dafb;
+    text-shadow: 0 0 10px rgba(97, 218, 251, 0.5);
+}
+
+.skills > div:nth-child(4) ion-icon { /* JavaScript */
+    color: #f7df1e;
+    text-shadow: 0 0 10px rgba(247, 223, 30, 0.5);
+}
+
+.skills > div:nth-child(5) ion-icon { /* Python */
+    color: #3776ab;
+    text-shadow: 0 0 10px rgba(55, 118, 171, 0.5);
+}
+
+.skills > div:nth-child(6) ion-icon { /* Java */
+    color: #007396;
+    text-shadow: 0 0 10px rgba(0, 115, 150, 0.5);
+}
+
+.skills > div:nth-child(7) ion-icon { /* C */
+    color: #00599c;
+    text-shadow: 0 0 10px rgba(0, 89, 156, 0.5);
+}
+
+.skills > div:hover ion-icon {
+    transform: scale(1.2) rotate(5deg);
+    text-shadow: 0 0 20px currentColor;
 }
 
 .skills .circle {

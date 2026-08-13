@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 const data = await response.json();
-
+ 
                 if (response.ok) {
                     showMessage('✅ Message envoyé avec succès!\n\nVous allez recevoir une confirmation par email.', 'success');
                     contactForm.reset();
